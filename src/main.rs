@@ -5,13 +5,24 @@ use yew::html::*;
 
 struct Model {
     input: String,
-    todos: Vec<String>,
+    edit_input: String,
+    todos: Vec<Todo>,
+}
+//added Todo Type for editing.
+struct Todo {
+    text: String,
+    //edit field allows todo to be editted independently.
+    edit: bool,
 }
 
 enum Msg {
     Add,
     Update(String),
     Remove(usize),
+    //these three msg types are for editing todos.
+    Edit(usize),
+    UpdateEdit(String),
+    Toggle(usize),
     RemoveAll,
     Nothing,
 }
@@ -19,8 +30,11 @@ enum Msg {
 fn update(_: &mut Context<Msg>, model: &mut Model, msg: Msg) {
     match msg {
         Msg::Add => {
-            let s = model.input.clone();
-            model.todos.push(s);
+            let t = Todo {
+                text: model.input.clone(),
+                edit: false,
+            };
+            model.todos.push(t);
             model.input = "".to_string();
         }
         Msg::Update(s) => {
@@ -32,17 +46,57 @@ fn update(_: &mut Context<Msg>, model: &mut Model, msg: Msg) {
         Msg::RemoveAll => {
             model.todos = vec![];
         }
+        Msg::UpdateEdit(s) => {
+            //assigns the string s to edit_input.
+            model.edit_input = s;
+        }
+        Msg::Edit(i) => {
+            //creates a new todo from the edited text.
+            let val = Todo {
+                text: model.edit_input.clone(),
+                edit: false,
+            };
+            model.todos.remove(i);
+            model.todos.push(val);
+        }
+        Msg::Toggle(i) => {
+            //gets todo from vector then looks at edit field.
+            let todo = model.todos.get_mut(i).unwrap();
+            todo.edit = !todo.edit;
+        }
         Msg::Nothing => {}
     }
 }
 
 fn view(model: &Model) -> Html<Msg> {
-    let view_todo = |(i, todo): (usize, &String)| {
+    //allows for editing of todos independently.
+    let view_todo_edit = |(i, todo): (usize, &Todo)| if todo.edit == true {
         html!{
-            <li>{format!("{} |", &todo)}
+            <label><input type="text",
+                    value=&todo.text,
+                    oninput=|e: InputData| Msg::UpdateEdit(e.value),
+                    onkeypress=move |e: KeyData| {
+                        if e.key == "Enter" {Msg::Edit(i)} else {Msg::Nothing}
+                    },
+                    />
+                    </label>
+        }
+    } else {
+        html! {
+            <label ondoubleclick=move|_| Msg::Toggle(i), > {format!("{} ", &todo.text)}
+            </label>
+        }
+    };
+    let view_todo = |(i, todo): (usize, &Todo)| {
+        html!{
+            <li>
+                { view_todo_edit((i, &todo))}
+            </li>
             <button onclick = move |_| Msg::Remove(i),>{"X"}</button></li>
         }
     };
+
+
     html! {
         <div>
             <h1>{"Todo App"}</h1>
@@ -70,6 +124,7 @@ fn main() {
     let model = Model {
         todos: vec![],
         input: "".to_string(),
+        edit_input: "".to_string(),
     };
     program(model, update, view);
 }
