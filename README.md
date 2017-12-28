@@ -1,4 +1,4 @@
-# rust_yew_todo_app
+# Rust Yew Todo Application
 
 # A simple Rust client side Todo App using the Yew Framework.  
 
