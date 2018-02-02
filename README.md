@@ -37,7 +37,7 @@ $ rustup target add wasm32-unknown-unknown
 $ cargo web start --target=wasm32-unknown-unknown
 ```
 
-### Check out the Youtube Tutorial for this [Rust Tutorial](https://youtu.be/j8EnB7gkygw).  Here is our [Youtube Channel](https://www.youtube.com/channel/UCYqCZOwHbnPwyjawKfE21wg) Subscribe for more content.
+### Check out the Youtube Tutorial for this [Rust Tutorial](https://youtu.be/j8EnB7gkygw).  Here is our [Youtube Channel](https://www.youtube.com/channel/UCYqCZOwHbnPwyjawKfE21wg) go ahead and subscribe for more content.
 
 ### Check out our blog at [tensor-programming.com](http://tensor-programming.com/).
 
