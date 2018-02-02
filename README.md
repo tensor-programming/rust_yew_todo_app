@@ -25,7 +25,7 @@ $ rustup target add wasm32-unknown-emscripten
 To run an optimised build instead of a debug build use:
 
 ```
-$ cargo web start --target=wasm32-unknown-emscripten --release
+$ cargo web start --target-webasm-emscripten=wasm32-unknown-emscripten --release
 ```
 
 #### Rust nightly
@@ -34,7 +34,7 @@ If you are using rust nightly you can use the brand new `wasm32-unknown-unknown`
 ```
 $ cargo install cargo-web
 $ rustup target add wasm32-unknown-unknown
-$ cargo web start --target=wasm32-unknown-unknown
+$ cargo web start --target-webasm=wasm32-unknown-unknown
 ```
 
 ### Check out the Youtube Tutorial for this [Rust Tutorial](https://youtu.be/j8EnB7gkygw).  Here is our [Youtube Channel](https://www.youtube.com/channel/UCYqCZOwHbnPwyjawKfE21wg) go ahead and subscribe for more content.
