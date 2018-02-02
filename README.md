@@ -2,7 +2,7 @@
 
 # A simple Rust client side Todo App using the Yew Framework.  
 
-#### Major Props to icode-live for updating this repository for the latest version of Yew. https://github.com/tensor-programming/rust_yew_todo_app/commit/a8b1aaafa5d3a71d6466686c6ce75703d66cf025
+#### Major Props to icode-live for [updating](https://github.com/tensor-programming/rust_yew_todo_app/pull/1/commits/a1ea01f303224c26b54fbda717b7dfff06256f8f) this repository for the latest version of Yew. 
 
 ### Running it
 
