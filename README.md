@@ -21,6 +21,15 @@ $ rustup target add asmjs-unknown-emscripten
 $ rustup target add wasm32-unknown-emscripten
 ```
 
+For normal Debug build run 
+```
+$ cargo web start --target-asmjs-emscripten=asmjs-unknown-emscripten
+```
+Or (Depends on the target)
+```
+$ cargo web start --target-webasm-emscripten=wasm32-unknown-emscripten
+```
+
 
 To run an optimised build instead of a debug build use:
 
