@@ -19,18 +19,13 @@ Install cargo-web and the asmjs and wasm32 emscripten targets as follows:
 $ cargo install cargo-web
 $ rustup target add asmjs-unknown-emscripten
 $ rustup target add wasm32-unknown-emscripten
-$ cargo web start
+
 ```
 
 For normal Debug build run 
 ```
-$ cargo web start --target-asmjs-emscripten=asmjs-unknown-emscripten
+$ cargo web start
 ```
-Or (Depends on the target)
-```
-$ cargo web start --target-webasm-emscripten=wasm32-unknown-emscripten
-```
-
 
 To run an optimised build instead of a debug build use:
 
